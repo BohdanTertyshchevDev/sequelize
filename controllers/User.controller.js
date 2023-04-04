@@ -50,3 +50,18 @@ module.exports.deleteByPk = async(req, res, next) => {
         next(error);
     }
 }
+
+module.exports.updateUser = async(req, res, next) => {
+    try {
+        const {params: {id}, body} = req;
+        const result = await User.update(body, {
+            where: {
+                id
+            }
+        })
+        console.log(result);
+        return res.status(200).send();
+    } catch (error) {
+        next(error);
+    }
+}
